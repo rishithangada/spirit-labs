@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Security Audit — SPIRIT Labs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="shared.css">
+<style>
+.page-hero { padding: 140px 48px 80px; border-bottom: 1px solid var(--border2); }
+.page-hero h1 { font-size: clamp(32px,5vw,56px); font-weight: 800; margin-bottom: 16px; }
+.page-hero p  { font-size: 17px; color: var(--muted); max-width: 540px; line-height: 1.7; }
+
+/* Pricing */
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1px;
+  background: var(--border2); max-width: 1200px; margin: 0 auto;
+}
+.price-card { background: var(--surface); padding: 40px 32px; position: relative; }
+.price-card.featured { background: var(--surface2); border-top: 2px solid var(--accent); }
+.price-badge { position: absolute; top: -1px; right: 24px; background: var(--accent); color: #fff; font-family: var(--mono); font-size: 9px; letter-spacing: 2px; padding: 4px 12px; }
+.price-tier  { font-family: var(--mono); font-size: 10px; letter-spacing: 4px; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+.price-val   { font-size: 40px; font-weight: 800; margin-bottom: 4px; }
+.price-val span { font-size: 18px; color: var(--muted); font-weight: 400; }
+.price-desc  { font-size: 13px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
+.price-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.price-features li { font-size: 13px; display: flex; gap: 10px; align-items: start; }
+.price-features li::before { content: '—'; color: var(--accent); flex-shrink: 0; font-family: var(--mono); }
+.price-features li.dim::before { color: var(--dim); }
+.price-features li.dim { color: var(--muted); opacity: .5; }
+
+/* Scanner stack */
+.scanner-row {
+  display: grid; grid-template-columns: 80px 200px 1fr 120px;
+  align-items: center; gap: 24px;
+  padding: 20px 32px; border-bottom: 1px solid var(--border2);
+}
+.scanner-row:last-child { border-bottom: none; }
+.scanner-name { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--accent); }
+.scanner-version { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.scanner-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.scanner-scope { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; color: var(--text); text-align: right; }
+
+/* OWASP checks */
+.owasp-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border2); }
+.owasp-item { background: var(--surface); padding: 24px 28px; display: flex; gap: 16px; align-items: start; }
+.owasp-num  { font-family: var(--mono); font-size: 11px; color: var(--accent); flex-shrink: 0; min-width: 40px; }
+.owasp-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.owasp-body { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+/* Report preview */
+.report-preview {
+  background: #0a0a0a; border: 1px solid var(--border2); border-left: 3px solid var(--accent);
+  padding: 28px 32px; font-family: var(--mono); font-size: 12px; line-height: 2;
+  max-width: 800px; margin: 0 auto;
+}
+.rp-header { color: var(--accent); margin-bottom: 16px; font-size: 14px; font-weight: 700; }
+.rp-section { color: var(--muted); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin: 16px 0 8px; }
+.rp-high    { color: #f87171; }
+.rp-med     { color: #fbbf24; }
+.rp-low     { color: #4ade80; }
+.rp-pass    { color: var(--pos); }
+
+@media (max-width: 900px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+  .owasp-grid   { grid-template-columns: 1fr; }
+  .scanner-row  { grid-template-columns: 1fr; gap: 8px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-logo">SPIRIT<span>/LABS</span></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="demo.html">Demo</a>
+    <a href="integrations.html">Integrations</a>
+    <a href="security.html" class="active">Security</a>
+  </div>
+  <a href="mailto:rishithang5@gmail.com" class="nav-cta">Start a Project</a>
+</nav>
+
+<div class="page-hero">
+  <div style="max-width:1200px; margin:0 auto;">
+    <p class="section-label">Security Audit Add-On</p>
+    <h1>Ship secure.<br>Stay secure.</h1>
+    <p>Every codebase we deliver ships with a security audit built in. Available as a standalone service for existing systems — Python, JavaScript, or full-stack web apps.</p>
+  </div>
+</div>
+
+<!-- Scanner Stack -->
+<div style="max-width:1200px; margin:0 auto; padding:60px 48px 0;">
+  <p class="section-label">Scanner Stack</p>
+  <h2 class="section-title">4 tools. One report.</h2>
+  <p class="section-sub" style="margin-bottom:40px;">Every audit runs all four scanners automatically. No manual setup — your code goes in, a severity-graded PDF comes out.</p>
+</div>
+<div style="max-width:1200px; margin:0 auto; padding:0 48px 60px; border-bottom:1px solid var(--border2);">
+  <div style="background:var(--surface); border:1px solid var(--border2);">
+    <div class="scanner-row" style="border-bottom:1px solid var(--border); background:var(--surface2);">
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--muted);">TOOL</div>
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--muted);">VERSION</div>
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--muted);">WHAT IT CHECKS</div>
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--muted);text-align:right;">SCOPE</div>
+    </div>
+    <div class="scanner-row">
+      <div class="scanner-name">Bandit</div>
+      <div class="scanner-version">v1.9.4 &mdash; installed</div>
+      <div class="scanner-desc">Python-specific vulnerabilities: hardcoded passwords, SQL injection, unsafe subprocess calls, insecure pickle/yaml usage, weak crypto.</div>
+      <div class="scanner-scope">Python</div>
+    </div>
+    <div class="scanner-row">
+      <div class="scanner-name">Semgrep</div>
+      <div class="scanner-version">v1.167.0 &mdash; installed</div>
+      <div class="scanner-desc">Multi-language static analysis with OWASP rule packs. Catches XSS, SQLi, broken auth, SSRF, path traversal across Python, JS, TypeScript, Go.</div>
+      <div class="scanner-scope">Multi-lang</div>
+    </div>
+    <div class="scanner-row">
+      <div class="scanner-name">Safety</div>
+      <div class="scanner-version">via pip-audit</div>
+      <div class="scanner-desc">Dependency vulnerability scan — checks every package in requirements.txt against the CVE database. Flags known-vulnerable versions with fix recommendations.</div>
+      <div class="scanner-scope">Dependencies</div>
+    </div>
+    <div class="scanner-row">
+      <div class="scanner-name">OWASP ZAP</div>
+      <div class="scanner-version">Web app scanner</div>
+      <div class="scanner-desc">Dynamic analysis for live web apps. Finds XSS, broken authentication, CSRF, security misconfigurations, sensitive data exposure, and injection flaws.</div>
+      <div class="scanner-scope">Web Apps</div>
+    </div>
+  </div>
+</div>
+
+<!-- OWASP Top 10 -->
+<div style="max-width:1200px; margin:0 auto; padding:60px 48px 0;">
+  <p class="section-label">Coverage</p>
+  <h2 class="section-title">OWASP Top 10 — fully covered.</h2>
+  <p class="section-sub" style="margin-bottom:40px;">Every audit maps findings to the OWASP Top 10. Your report tells you exactly which categories are affected and how to fix them.</p>
+</div>
+<div style="max-width:1200px; margin:0 auto; padding:0 48px 80px;">
+  <div class="owasp-grid">
+    <div class="owasp-item"><div class="owasp-num">A01</div><div><div class="owasp-name">Broken Access Control</div><div class="owasp-body">Missing auth checks, privilege escalation, IDOR vulnerabilities, exposed admin routes.</div></div></div>
+    <div class="owasp-item"><div class="owasp-num">A02</div><div><div class="owasp-name">Cryptographic Failures</div><div class="owasp-body">Weak algorithms, hardcoded keys, secrets in code, insecure transmission.</div></div></div>
+    <div class="owasp-item"><div class="owasp-num">A03</div><div><div class="owasp-name">Injection</div><div class="owasp-body">SQL, NoSQL, OS command, LDAP injection. Parameterized query enforcement.</div></div></div>
+    <div class="owasp-item"><div class="owasp-num">A04</div><div><div class="owasp-name">Insecure Design</div><div class="owasp-body">Missing threat modeling, insecure architecture patterns, missing rate limiting.</div></div></div>
+    <div class="owasp-item"><div class="owasp-num">A05</div><div><div class="owasp-name">Security Misconfiguration</div><div class="owasp-body">Default creds, open S3 buckets, verbose error messages, unnecessary features enabled.</div></div></div>
+    <div class="owasp-item"><div class="owasp-num">A06</div><div><div class="owasp-name">Vulnerable Components</div><div class="owasp-body">Outdated packages with known CVEs. Full dependency tree scan via Safety/pip-audit.</div></div></div>
+    <div class="owasp-item"><div class="owasp-num">A07</div><div><div class="owasp-name">Auth &amp; Session Failures</div><div class="owasp-body">Weak passwords, broken session management, missing MFA, credential exposure.</div></div></div>
+    <div class="owasp-item"><div class="owasp-num">A08</div><div><div class="owasp-name">Software Integrity Failures</div><div class="owasp-body">Insecure CI/CD pipelines, unsigned packages, unverified auto-updates.</div></div></div>
+    <div class="owasp-item"><div class="owasp-num">A09</div><div><div class="owasp-name">Logging &amp; Monitoring Failures</div><div class="owasp-body">Missing audit logs, no alerting on suspicious events, log injection vulnerabilities.</div></div></div>
+    <div class="owasp-item"><div class="owasp-num">A10</div><div><div class="owasp-name">Server-Side Request Forgery</div><div class="owasp-body">SSRF vulnerabilities, unvalidated URL redirects, internal network exposure.</div></div></div>
+  </div>
+</div>
+
+<!-- Sample Report -->
+<div style="background:var(--surface2); border-top:1px solid var(--border2); border-bottom:1px solid var(--border2); padding:80px 48px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <p class="section-label">Sample Output</p>
+    <h2 class="section-title" style="margin-bottom:40px;">What your report looks like.</h2>
+    <div class="report-preview">
+      <div class="rp-header">SPIRIT LABS — SECURITY AUDIT REPORT</div>
+      <div>Client: [Your Company] &nbsp;|&nbsp; Scan Date: 2026-06-23 &nbsp;|&nbsp; Scope: Python + Web App</div>
+      <div class="rp-section">Executive Summary</div>
+      <div>Total issues found: <span class="rp-high">2 HIGH</span> &nbsp; <span class="rp-med">4 MEDIUM</span> &nbsp; <span class="rp-low">6 LOW</span></div>
+      <div>OWASP categories affected: A02 (Crypto), A03 (Injection), A06 (Components)</div>
+      <div class="rp-section">Critical Findings</div>
+      <div><span class="rp-high">[HIGH]</span> B105 — Hardcoded password string in config.py:47</div>
+      <div><span class="rp-high">[HIGH]</span> A03:2021 — SQL query built via string concat in api/users.py:112</div>
+      <div><span class="rp-med">[MED] </span> CVE-2024-3651 — requests==2.28.0 has known SSRF vulnerability</div>
+      <div><span class="rp-med">[MED] </span> B602 — subprocess call with shell=True in scripts/deploy.py:23</div>
+      <div class="rp-section">Passing Checks</div>
+      <div><span class="rp-pass">[PASS]</span> No secrets detected in git history</div>
+      <div><span class="rp-pass">[PASS]</span> Authentication middleware present on all protected routes</div>
+      <div><span class="rp-pass">[PASS]</span> Rate limiting active on public endpoints</div>
+      <div class="rp-section">Remediation Steps &amp; Timeline</div>
+      <div>Full remediation guide with code examples included. &mdash; PDF + JSON machine-readable output.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Pricing -->
+<div style="max-width:1200px; margin:0 auto; padding:80px 48px 0;">
+  <p class="section-label">Pricing</p>
+  <h2 class="section-title" style="margin-bottom:40px;">Flat-rate. No surprises.</h2>
+</div>
+<div style="max-width:1200px; margin:0 auto; padding:0 48px 80px;">
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-tier">Starter</div>
+      <div class="price-val">$500<span> flat</span></div>
+      <div class="price-desc">Single codebase, Python or JS. Great for small projects or MVPs before launch.</div>
+      <ul class="price-features">
+        <li>Bandit + Semgrep static scan</li>
+        <li>Dependency CVE check</li>
+        <li>PDF report with severity grades</li>
+        <li>Up to 10,000 lines of code</li>
+        <li>3-day turnaround</li>
+        <li class="dim">OWASP ZAP dynamic scan</li>
+        <li class="dim">Remediation walkthrough call</li>
+      </ul>
+      <a href="mailto:rishithang5@gmail.com" class="btn-ghost" style="width:100%;justify-content:center;">Get Started</a>
+    </div>
+    <div class="price-card featured">
+      <div class="price-badge">MOST POPULAR</div>
+      <div class="price-tier">Standard</div>
+      <div class="price-val">$1,200<span> flat</span></div>
+      <div class="price-desc">Full-stack audit with dynamic scanning. Ideal for production apps with real users and data.</div>
+      <ul class="price-features">
+        <li>Everything in Starter</li>
+        <li>OWASP ZAP dynamic scan</li>
+        <li>All 10 OWASP categories checked</li>
+        <li>Unlimited lines of code</li>
+        <li>Multi-language (Python + JS/TS)</li>
+        <li>1-hour remediation call included</li>
+        <li class="dim">CI/CD pipeline integration</li>
+      </ul>
+      <a href="mailto:rishithang5@gmail.com" class="btn-primary" style="width:100%;justify-content:center;">Get Started &rarr;</a>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Enterprise</div>
+      <div class="price-val">$2,500<span>+</span></div>
+      <div class="price-desc">Ongoing security partnership. Monthly scans, CI/CD integration, and developer training.</div>
+      <ul class="price-features">
+        <li>Everything in Standard</li>
+        <li>Monthly recurring scans</li>
+        <li>CI/CD pipeline integration</li>
+        <li>CodeRabbit PR-level review</li>
+        <li>Custom security rules (Semgrep)</li>
+        <li>Developer training session</li>
+        <li>Priority 24h turnaround</li>
+      </ul>
+      <a href="mailto:rishithang5@gmail.com" class="btn-ghost" style="width:100%;justify-content:center;">Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<div class="cta-block">
+  <h2>Want a free pre-audit checklist?</h2>
+  <p>We'll send you a 20-point security checklist you can run yourself before engaging. No strings attached.</p>
+  <a href="mailto:rishithang5@gmail.com?subject=Free Security Checklist" class="btn-primary">Send Me the Checklist &rarr;</a>
+</div>
+
+<footer class="sitefooter">
+  <span>SPIRIT LABS &copy; 2026</span>
+  <span>Built by <a href="https://rishithangada.github.io" target="_blank">Rishi Thangada</a></span>
+  <span><a href="mailto:rishithang5@gmail.com">rishithang5@gmail.com</a></span>
+</footer>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SPIRIT Labs — AI Infrastructure for Modern Founders</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="We build AI-powered operating systems, trading pipelines, and automation infrastructure. Custom dashboards, intelligent agents, and security-hardened stacks.">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ── Hero ── */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 48px 80px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -200px; right: -200px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(220,38,38,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 4px;
+  color: var(--accent); text-transform: uppercase; margin-bottom: 24px;
+  display: flex; align-items: center; gap: 8px;
+}
+.hero h1 {
+  font-size: clamp(36px, 6vw, 72px); font-weight: 800; line-height: 1.05;
+  max-width: 900px; margin-bottom: 24px; letter-spacing: -1px;
+}
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero-sub {
+  font-size: 18px; color: var(--muted); max-width: 560px; line-height: 1.7; margin-bottom: 48px;
+}
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.hero-stats {
+  display: grid; grid-template-columns: repeat(3, auto); gap: 48px;
+  margin-top: 80px; padding-top: 48px; border-top: 1px solid var(--border2);
+  width: fit-content;
+}
+.stat-num { font-family: var(--mono); font-size: 32px; font-weight: 700; color: var(--text); }
+.stat-num em { color: var(--accent); font-style: normal; }
+.stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* ── What we build ── */
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border2); margin-top: 48px; }
+.service-card { background: var(--surface); padding: 40px 32px; }
+.service-icon { width: 40px; height: 40px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-family: var(--mono); font-size: 14px; color: var(--accent); }
+.service-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.service-body  { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+.service-tags  { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* ── Proof strip ── */
+.proof-strip {
+  border-top: 1px solid var(--border2); border-bottom: 1px solid var(--border2);
+  padding: 48px; display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
+  background: var(--border2);
+}
+.proof-item { background: var(--bg); padding: 32px 40px; }
+.proof-val { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+.proof-lbl { font-size: 12px; color: var(--muted); letter-spacing: 1px; }
+
+/* ── CTA ── */
+.cta-block {
+  text-align: center; padding: 100px 48px;
+  border-top: 1px solid var(--border2);
+}
+.cta-block h2 { font-size: 36px; font-weight: 800; margin-bottom: 16px; }
+.cta-block p  { color: var(--muted); margin-bottom: 40px; font-size: 16px; }
+
+@media (max-width: 900px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .proof-strip   { grid-template-columns: repeat(2,1fr); }
+  .hero-stats    { grid-template-columns: repeat(2, auto); gap: 32px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-logo">SPIRIT<span>/LABS</span></div>
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="demo.html">Demo</a>
+    <a href="integrations.html">Integrations</a>
+    <a href="security.html">Security</a>
+  </div>
+  <a href="mailto:rishithang5@gmail.com" class="nav-cta">Start a Project</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow"><span class="live-dot"></span> Available for new projects</div>
+  <h1>AI infrastructure.<br>Built to <em>actually work.</em></h1>
+  <p class="hero-sub">
+    Custom dashboards, intelligent agents, trading pipelines, and automation systems.
+    We build the operating layer that makes your business run on its own.
+  </p>
+  <div class="hero-actions">
+    <a href="demo.html" class="btn-primary">See Live Demo &rarr;</a>
+    <a href="mailto:rishithang5@gmail.com" class="btn-ghost">Book a Call</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">8<em>+</em></div>
+      <div class="stat-label">Live pipelines running 24/7</div>
+    </div>
+    <div>
+      <div class="stat-num"><em>+</em>2.27<em>%</em></div>
+      <div class="stat-label">Validated avg return / trade</div>
+    </div>
+    <div>
+      <div class="stat-num">5<em>→1</em></div>
+      <div class="stat-label">Platforms unified in one OS</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<div style="padding: 100px 48px 0; max-width:1200px; margin:0 auto;">
+  <p class="section-label">What we build</p>
+  <h2 class="section-title">Full-stack AI systems,<br>not chatbot wrappers.</h2>
+  <p class="section-sub">Every delivery is production-grade, security-audited, and built to run autonomously — not a prototype that breaks under real load.</p>
+</div>
+
+<div style="max-width:1200px; margin:0 auto; padding: 40px 48px 100px;">
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">OS</div>
+      <div class="service-title">AI Operating Systems</div>
+      <div class="service-body">A unified command layer for your business — real-time dashboards, multi-agent orchestration, and automated pipelines wired to your data sources.</div>
+      <div class="service-tags">
+        <span class="tag red">Dashboards</span>
+        <span class="tag">Agents</span>
+        <span class="tag">Telegram</span>
+        <span class="tag">Scheduling</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">TRD</div>
+      <div class="service-title">Trading Pipelines</div>
+      <div class="service-body">Walk-forward validated signal engines. Regime-aware. Multi-strategy conviction scoring. Connected to live market data, alerts, and a paper ledger for verification.</div>
+      <div class="service-tags">
+        <span class="tag red">Strategy-003</span>
+        <span class="tag">Alpaca</span>
+        <span class="tag">yfinance</span>
+        <span class="tag amber">+2.27% edge</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">AUTO</div>
+      <div class="service-title">Business Automation</div>
+      <div class="service-body">Lead scrapers, outreach pipelines, Gmail/Calendar integration, CRM wiring, and scheduled jobs that run without you touching them.</div>
+      <div class="service-tags">
+        <span class="tag">Reddit</span>
+        <span class="tag">Gmail</span>
+        <span class="tag">Make.com</span>
+        <span class="tag">Webhooks</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">SEC</div>
+      <div class="service-title">Security Audits</div>
+      <div class="service-body">Static analysis, dependency scanning, OWASP checks, and a structured PDF report with severity ratings and remediation steps. Available as a standalone add-on.</div>
+      <div class="service-tags">
+        <span class="tag red">Bandit</span>
+        <span class="tag red">Semgrep</span>
+        <span class="tag">OWASP</span>
+        <span class="tag amber">PDF Report</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">DATA</div>
+      <div class="service-title">Data Dashboards</div>
+      <div class="service-body">Live data visualization built on your actual sources — not mock data. Candlestick charts, KPI strips, sentiment feeds, equity curves, and portfolio views.</div>
+      <div class="service-tags">
+        <span class="tag">TradingView</span>
+        <span class="tag">Three.js</span>
+        <span class="tag">WebGL</span>
+        <span class="tag">SSE</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">AGT</div>
+      <div class="service-title">Custom Agents</div>
+      <div class="service-body">Multi-model agent chains (Claude → Codex → Ollama) for research, content, trading signals, and ops tasks — with full observability and skill-file architecture.</div>
+      <div class="service-tags">
+        <span class="tag">Claude</span>
+        <span class="tag">Ollama</span>
+        <span class="tag">Codex</span>
+        <span class="tag green">Local LLM</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="proof-strip">
+  <div class="proof-item">
+    <div class="proof-val">269</div>
+    <div class="proof-lbl">Out-of-sample validated trades</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-val">53.9%</div>
+    <div class="proof-lbl">Win rate on strategy-003</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-val">5</div>
+    <div class="proof-lbl">Domain intelligence feeds</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-val">0</div>
+    <div class="proof-lbl">Manual interventions per day</div>
+  </div>
+</div>
+
+<div class="cta-block">
+  <h2>Ready to build your system?</h2>
+  <p>Every project starts with a 30-minute call. No pitch deck. Just your problem and how we solve it.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+    <a href="mailto:rishithang5@gmail.com" class="btn-primary">Email Rishi &rarr;</a>
+    <a href="demo.html" class="btn-ghost">See the Demo First</a>
+  </div>
+</div>
+
+<footer class="sitefooter">
+  <span>SPIRIT LABS &copy; 2026</span>
+  <span>Built by <a href="https://rishithangada.github.io" target="_blank">Rishi Thangada</a> &mdash; CS @ UT Austin</span>
+  <span><a href="mailto:rishithang5@gmail.com">rishithang5@gmail.com</a></span>
+</footer>
+
+</body>
+</html>

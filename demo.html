@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Live Demo — SPIRIT Labs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="shared.css">
+<style>
+.page-hero { padding: 140px 48px 80px; border-bottom: 1px solid var(--border2); }
+.page-hero h1 { font-size: clamp(32px,5vw,56px); font-weight: 800; margin-bottom: 16px; }
+
+/* Demo showcase */
+.demo-tabs { display: flex; border-bottom: 1px solid var(--border2); max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+.demo-tab { padding: 16px 24px; font-family: var(--mono); font-size: 11px; letter-spacing: 2px; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; text-transform: uppercase; }
+.demo-tab:hover { color: var(--text); }
+.demo-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.demo-panel { display: none; padding: 60px 48px; max-width: 1200px; margin: 0 auto; }
+.demo-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+
+.demo-screen {
+  background: #060606; border: 1px solid var(--border2);
+  font-family: var(--mono); font-size: 12px; line-height: 1.8; overflow: hidden;
+}
+.screen-bar { background: #111; padding: 10px 16px; border-bottom: 1px solid var(--border2); display: flex; align-items: center; gap: 8px; font-size: 10px; color: var(--muted); letter-spacing: 2px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.d-red{background:#dc2626;} .d-amber{background:#f59e0b;} .d-green{background:#22c55e;}
+.screen-body { padding: 20px 24px; min-height: 280px; }
+.s-red   { color: #f87171; }
+.s-green { color: #4ade80; }
+.s-amber { color: #fbbf24; }
+.s-blue  { color: #60a5fa; }
+.s-gray  { color: #6b7280; }
+.s-white { color: #f0f0f0; }
+
+.demo-copy h3 { font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+.demo-copy p  { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+.demo-points  { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.demo-points li { font-size: 13px; display: flex; gap: 10px; align-items: start; }
+.demo-points li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-family: var(--mono); }
+
+/* Stats row */
+.stats-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border2); border-top: 1px solid var(--border2); border-bottom: 1px solid var(--border2); }
+.stat-block { background: var(--surface); padding: 32px; }
+.stat-n { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.stat-l { font-size: 12px; color: var(--muted); }
+
+/* Pipeline viz */
+.pipeline { display: flex; align-items: center; gap: 0; flex-wrap: wrap; padding: 32px 48px; max-width: 1200px; margin: 0 auto; }
+.pipe-node { background: var(--surface); border: 1px solid var(--border2); padding: 12px 20px; font-family: var(--mono); font-size: 11px; color: var(--text); letter-spacing: 1px; white-space: nowrap; }
+.pipe-node.accent { border-color: rgba(220,38,38,0.5); color: var(--accent); }
+.pipe-arrow { color: var(--muted); padding: 0 8px; font-size: 16px; }
+
+@media (max-width:900px) {
+  .demo-panel.active { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(2,1fr); }
+  .pipeline { gap: 8px; }
+  .pipe-arrow { display:none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-logo">SPIRIT<span>/LABS</span></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="demo.html" class="active">Demo</a>
+    <a href="integrations.html">Integrations</a>
+    <a href="security.html">Security</a>
+  </div>
+  <a href="mailto:rishithang5@gmail.com" class="nav-cta">Start a Project</a>
+</nav>
+
+<div class="page-hero">
+  <div style="max-width:1200px; margin:0 auto;">
+    <p class="section-label">Live System Demo</p>
+    <h1>This is what we ship.<br>Not a mockup.</h1>
+    <p style="font-size:17px;color:var(--muted);max-width:540px;line-height:1.7;">
+      SPIRIT OS is our flagship build — a fully autonomous AI operating system running live, 24/7, on a single Mac. Everything below is production code.
+    </p>
+  </div>
+</div>
+
+<!-- Pipeline viz -->
+<div style="border-bottom:1px solid var(--border2); background:var(--surface);">
+  <div style="max-width:1200px; margin:0 auto; padding:24px 48px; font-family:var(--mono); font-size:10px; letter-spacing:3px; color:var(--muted);">LIVE PIPELINE — MARKET HOURS</div>
+  <div class="pipeline">
+    <div class="pipe-node accent">yfinance bars</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-node">regime_check</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-node">strategy-003</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-node">alpha_score</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-node">catalyst_judge</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-node">GEX_check</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-node accent">TRADE / NO-TRADE</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-node">Telegram alert</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-node">ledger.db</div>
+  </div>
+</div>
+
+<!-- Tab navigation -->
+<div class="demo-tabs">
+  <div class="demo-tab active" onclick="showTab('trading')">Trading OS</div>
+  <div class="demo-tab" onclick="showTab('agents')">Agent Chain</div>
+  <div class="demo-tab" onclick="showTab('leads')">Lead Pipeline</div>
+  <div class="demo-tab" onclick="showTab('dashboard')">Dashboard</div>
+</div>
+
+<!-- TRADING TAB -->
+<div id="tab-trading" class="demo-panel active">
+  <div class="demo-screen">
+    <div class="screen-bar"><div class="dot d-red"></div><div class="dot d-amber"></div><div class="dot d-green"></div><span>SPIRIT — TRADING DOMAIN</span></div>
+    <div class="screen-body">
+      <div><span class="s-gray">08:00 CT —</span> <span class="s-green">regime_check fired</span></div>
+      <div><span class="s-gray">         </span> SPY 562.18 &gt; MA50 528.44 → <span class="s-green">RISK ON</span></div>
+      <div>&nbsp;</div>
+      <div><span class="s-gray">09:30 CT —</span> <span class="s-amber">market_scan: 4 tickers</span></div>
+      <div><span class="s-gray">         </span> QQQ: <span class="s-amber">INSIGHT</span> (catalyst NEUTRAL)</div>
+      <div><span class="s-gray">         </span> SPY: <span class="s-amber">INSIGHT</span> (GEX pinned)</div>
+      <div><span class="s-gray">         </span> NVDA: <span class="s-red">NO-TRADE</span> (earnings in 4d)</div>
+      <div><span class="s-gray">         </span> AAPL: <span class="s-green">TRADE</span> alpha=71/100 [B]</div>
+      <div>&nbsp;</div>
+      <div><span class="s-gray">09:45 CT —</span> <span class="s-green">qqq_alert check</span></div>
+      <div><span class="s-gray">         </span> QQQ MA20 cross ↑ + RSI 58.3</div>
+      <div><span class="s-gray">         </span> 1H confirm: QQQ 1H close &gt; 1H MA20 ✓</div>
+      <div><span class="s-gray">         </span> → <span class="s-green">Telegram alert sent</span></div>
+      <div><span class="s-gray">         </span> → <span class="s-green">ledger.db logged ticket #5</span></div>
+      <div>&nbsp;</div>
+      <div><span class="s-gray">15:20 CT —</span> paper_tracker digest</div>
+      <div><span class="s-gray">         </span> IWM ticket #4: day 5/30 | <span class="s-amber">+$1.23</span></div>
+    </div>
+  </div>
+  <div class="demo-copy">
+    <h3>Walk-forward validated trading signals</h3>
+    <p>Strategy-003 was validated on 269 out-of-sample trades with a +2.27% average return per trade and 53.9% win rate. The system generates, logs, and tracks every signal automatically.</p>
+    <ul class="demo-points">
+      <li>Regime gate: SPY vs MA50 prevents entries in risk-off markets</li>
+      <li>Alpha conviction score: 8 signals weighted 0–100</li>
+      <li>Catalyst filter: drops Cramer/listicle headlines before judging</li>
+      <li>GEX context: reduces confidence when SPY is gamma-pinned</li>
+      <li>Paper ledger: every verdict tracked, outcomes scored at 30 bars</li>
+      <li>Telegram: real-time alerts, paper order via /confirm</li>
+    </ul>
+  </div>
+</div>
+
+<!-- AGENTS TAB -->
+<div id="tab-agents" class="demo-panel">
+  <div class="demo-screen">
+    <div class="screen-bar"><div class="dot d-red"></div><div class="dot d-amber"></div><div class="dot d-green"></div><span>ops.py — AGENT DISPATCH</span></div>
+    <div class="screen-body">
+      <div><span class="s-blue">&gt; /ops</span> <span class="s-white">research: who is buying AI infrastructure in Austin</span></div>
+      <div>&nbsp;</div>
+      <div><span class="s-gray">routing →</span> <span class="s-amber">research agent</span></div>
+      <div><span class="s-gray">backend →</span> <span class="s-green">Ollama llama3.2</span> (fast/cheap)</div>
+      <div><span class="s-gray">skill   →</span> prompts/skills/research.md loaded</div>
+      <div><span class="s-gray">status  →</span> running...</div>
+      <div>&nbsp;</div>
+      <div><span class="s-green">done</span> in 4.2s → <span class="s-gray">logs/2026-06-23.jsonl</span></div>
+      <div><span class="s-gray">saved  →</span> Obsidian/SPIRIT/Daily/2026-06-23.md</div>
+      <div>&nbsp;</div>
+      <div><span class="s-blue">&gt; /idea</span> <span class="s-white">AAPL momentum check</span></div>
+      <div>&nbsp;</div>
+      <div><span class="s-gray">routing →</span> <span class="s-amber">trading agent</span></div>
+      <div><span class="s-gray">backend →</span> <span class="s-red">Claude Sonnet</span> (heavy reasoning)</div>
+      <div><span class="s-gray">         </span> Codex fallback ready</div>
+      <div><span class="s-gray">verdict →</span> <span class="s-green">TRADE</span> alpha=71 [B] regime=ON</div>
+      <div><span class="s-gray">         </span> <span class="s-green">Telegram alert dispatched</span></div>
+    </div>
+  </div>
+  <div class="demo-copy">
+    <h3>Multi-model agent orchestration</h3>
+    <p>ops.py routes every task to the right model automatically — cheap and fast for bulk work, powerful reasoning for complex decisions. Every run is logged and visible in SPIRIT.</p>
+    <ul class="demo-points">
+      <li>Auto-classification: research / trading / code / summarize / content</li>
+      <li>Model chain: Ollama → Gemini → Codex → Claude (cost-optimized)</li>
+      <li>Skill files: CEO-mindset prompts loaded fresh per agent run</li>
+      <li>Full observability: routing → running → done/failed in real time</li>
+      <li>Obsidian sync: every output appended to your vault automatically</li>
+      <li>Telegram interface: run any agent from your phone</li>
+    </ul>
+  </div>
+</div>
+
+<!-- LEADS TAB -->
+<div id="tab-leads" class="demo-panel">
+  <div class="demo-screen">
+    <div class="screen-bar"><div class="dot d-red"></div><div class="dot d-amber"></div><div class="dot d-green"></div><span>leads pipeline — daily 06:00</span></div>
+    <div class="screen-body">
+      <div><span class="s-gray">06:00 —</span> <span class="s-amber">reddit_leads.py</span></div>
+      <div><span class="s-gray">        </span> r/forhire RSS → <span class="s-green">13 filtered</span> (excl. For Hire)</div>
+      <div><span class="s-gray">        </span> top lead: [Hiring] TikTok automation — score 20/30</div>
+      <div>&nbsp;</div>
+      <div><span class="s-gray">06:03 —</span> <span class="s-amber">hn_leads.py</span></div>
+      <div><span class="s-gray">        </span> HN Algolia → 8 posts scanned → <span class="s-green">2 saved</span></div>
+      <div>&nbsp;</div>
+      <div><span class="s-gray">06:06 —</span> <span class="s-amber">upwork_leads.py</span></div>
+      <div><span class="s-gray">        </span> WWR RSS → 48 leads → <span class="s-green">22/30 top score</span></div>
+      <div><span class="s-gray">        </span> Lemon.io | Senior React Full-stack Developer</div>
+      <div>&nbsp;</div>
+      <div><span class="s-gray">06:10 —</span> leads.db updated: <span class="s-green">+27 new entries</span></div>
+      <div><span class="s-gray">        </span> Telegram digest sent → 3 warm leads flagged</div>
+      <div>&nbsp;</div>
+      <div><span class="s-gray">status →</span> <span class="s-green">27 scored</span> | <span class="s-amber">3 parked</span> | 0 dupes</div>
+      <div><span class="s-gray">        </span> next run: tomorrow 06:00</div>
+    </div>
+  </div>
+  <div class="demo-copy">
+    <h3>Automated lead intelligence, zero manual work</h3>
+    <p>Three scrapers run daily at 6am, pull buyer-intent posts from Reddit, HN, and WWR, score them 0-30, and surface warm leads in your Telegram before market open.</p>
+    <ul class="demo-points">
+      <li>Reddit RSS: r/forhire [Hiring] posts, job-seeker filtered</li>
+      <li>HN Algolia: Freelancer/Hiring threads, tech founder leads</li>
+      <li>WeWorkRemotely: companies posting for AI/automation roles</li>
+      <li>Score 0-30: fit × urgency × reach, minimum threshold 15</li>
+      <li>SQLite ledger: all leads tracked with status and draft paths</li>
+      <li>Outreach drafts: generated but never sent without confirmation</li>
+    </ul>
+  </div>
+</div>
+
+<!-- DASHBOARD TAB -->
+<div id="tab-dashboard" class="demo-panel">
+  <div class="demo-screen">
+    <div class="screen-bar"><div class="dot d-red"></div><div class="dot d-amber"></div><div class="dot d-green"></div><span>localhost:8766 — SPIRIT OS</span></div>
+    <div class="screen-body">
+      <div style="text-align:center; padding:12px 0; font-size:11px; color:var(--accent); letter-spacing:4px;">SPIRIT OS v2 — IMPERIAL COMMAND</div>
+      <div style="text-align:center; font-size:10px; color:var(--muted); letter-spacing:3px; margin-bottom:16px;">Three.js WebGL · Death Star + Star Destroyer scene</div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; font-size:10px; font-family:var(--mono); margin-bottom:12px;">
+        <div style="background:#111;padding:8px;border:1px solid #1f1f1f;"><div style="color:var(--accent)">TRADING</div><div style="color:#4ade80">ACTIVE</div></div>
+        <div style="background:#111;padding:8px;border:1px solid #1f1f1f;"><div style="color:var(--accent)">BUSINESS</div><div style="color:#4ade80">ACTIVE</div></div>
+        <div style="background:#111;padding:8px;border:1px solid #1f1f1f;"><div style="color:var(--accent)">RESEARCH</div><div style="color:#4ade80">ACTIVE</div></div>
+        <div style="background:#111;padding:8px;border:1px solid #1f1f1f;"><div style="color:var(--accent)">PRODUCTIVITY</div><div style="color:#4ade80">ACTIVE</div></div>
+        <div style="background:#111;padding:8px;border:1px solid #1f1f1f;"><div style="color:var(--accent)">CONTENT</div><div style="color:#6b7280">SCAFFOLD</div></div>
+        <div style="background:#111;padding:8px;border:1px solid #1f1f1f;"><div style="color:var(--accent)">SOCIAL</div><div style="color:#6b7280">SCAFFOLD</div></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);">Click any ship → drill into domain page</div>
+      <div style="font-size:10px;color:var(--muted);">Live data: Finnhub · Alpaca · yfinance · Gmail · Calendar</div>
+    </div>
+  </div>
+  <div class="demo-copy">
+    <h3>One dashboard. Every data source.</h3>
+    <p>SPIRIT's 3D command center connects trading, business, research, and productivity into a single live view. Each node drills into a dedicated domain page with real data.</p>
+    <ul class="demo-points">
+      <li>Three.js WebGL scene with interactive ship nodes</li>
+      <li>Click ship → full domain page (trading chart, lead table, news feed)</li>
+      <li>Live data polling: 20-second refresh on market data</li>
+      <li>SPIRIT design system: #080808 / #dc2626 / monospace</li>
+      <li>Background scheduler: 6 automated jobs, no cron needed</li>
+      <li>macOS launchd: auto-restarts on boot, always-on</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats-row">
+  <div class="stat-block"><div class="stat-n">8</div><div class="stat-l">Automated pipelines</div></div>
+  <div class="stat-block"><div class="stat-n">269</div><div class="stat-l">Validated out-of-sample trades</div></div>
+  <div class="stat-block"><div class="stat-n">3</div><div class="stat-l">Daily lead scrapers</div></div>
+  <div class="stat-block"><div class="stat-n">0</div><div class="stat-l">Manual ops per market day</div></div>
+</div>
+
+<div class="cta-block">
+  <h2>Want this for your business?</h2>
+  <p>Every system is custom-built to your data sources, workflows, and team. 30-minute scoping call, then we build.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+    <a href="mailto:rishithang5@gmail.com" class="btn-primary">Start a Project &rarr;</a>
+    <a href="integrations.html" class="btn-ghost">See All Integrations</a>
+  </div>
+</div>
+
+<footer class="sitefooter">
+  <span>SPIRIT LABS &copy; 2026</span>
+  <span>Built by <a href="https://rishithangada.github.io" target="_blank">Rishi Thangada</a></span>
+  <span><a href="mailto:rishithang5@gmail.com">rishithang5@gmail.com</a></span>
+</footer>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.demo-panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+</script>
+</body>
+</html>

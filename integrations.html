@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Integrations — SPIRIT Labs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="shared.css">
+<style>
+.page-hero { padding: 140px 48px 80px; border-bottom: 1px solid var(--border2); }
+.page-hero h1 { font-size: clamp(32px,5vw,56px); font-weight: 800; margin-bottom: 16px; }
+.page-hero p  { font-size: 17px; color: var(--muted); max-width: 540px; line-height: 1.7; }
+
+.int-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border2);
+  max-width: 1200px; margin: 0 auto;
+}
+.int-card {
+  background: var(--surface); padding: 32px;
+  transition: background .2s;
+}
+.int-card:hover { background: var(--surface2); }
+.int-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.int-icon {
+  width: 44px; height: 44px; background: var(--surface2);
+  border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 11px; color: var(--accent); flex-shrink: 0;
+  letter-spacing: 1px;
+}
+.int-name   { font-weight: 700; font-size: 15px; }
+.int-status { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; }
+.status-live { color: var(--pos); }
+.status-ready { color: var(--amber); }
+.status-addon { color: var(--accent); }
+.int-body { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+.int-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.category-header {
+  max-width: 1200px; margin: 0 auto;
+  padding: 48px 48px 20px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 4px;
+  color: var(--accent); text-transform: uppercase;
+  border-top: 1px solid var(--border2);
+}
+.category-header:first-of-type { border-top: none; }
+
+@media (max-width: 900px) { .int-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-logo">SPIRIT<span>/LABS</span></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="demo.html">Demo</a>
+    <a href="integrations.html" class="active">Integrations</a>
+    <a href="security.html">Security</a>
+  </div>
+  <a href="mailto:rishithang5@gmail.com" class="nav-cta">Start a Project</a>
+</nav>
+
+<div class="page-hero">
+  <div style="max-width:1200px; margin:0 auto;">
+    <p class="section-label">Integration Catalog</p>
+    <h1>Connect everything.<br>Break nothing.</h1>
+    <p>Every integration we ship is production-tested, rate-limit aware, and wired with a graceful fallback. No mock data — if it shows up on the dashboard, it's live.</p>
+  </div>
+</div>
+
+<!-- MARKET DATA -->
+<div class="category-header">Market Data + Trading</div>
+<div class="int-grid">
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">ALP</div>
+      <div><div class="int-name">Alpaca Markets</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">Real-time price feed, paper account management, position snapshots, and order execution (paper-only, /confirm-gated). GET-only by default with hard-pinned paper host.</div>
+    <div class="int-tags"><span class="tag green">Paper Trading</span><span class="tag">REST</span><span class="tag">Real-time</span></div>
+  </div>
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">YF</div>
+      <div><div class="int-name">yfinance</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">Consolidated tape daily bars for MA20/MA50/RSI calculations. 1-hour JSON cache. Feeds all strategy signals, regime checks, and backtest engines.</div>
+    <div class="int-tags"><span class="tag green">Daily Bars</span><span class="tag">OHLCV</span><span class="tag">Cached</span></div>
+  </div>
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">FH</div>
+      <div><div class="int-name">Finnhub</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">Company news for 20 validated tickers + general market news. Ollama-scored for sentiment (bullish/bearish/neutral) and impact (high/medium/low). 15 articles/hr.</div>
+    <div class="int-tags"><span class="tag green">News Feed</span><span class="tag">Sentiment</span><span class="tag">REST</span></div>
+  </div>
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">TV</div>
+      <div><div class="int-name">TradingView Lightweight Charts</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">v4.2.3 embedded candlestick charts with volume histogram, MA overlays, and 20-second live polling from yfinance intraday bars. SPIRIT aesthetic overrides.</div>
+    <div class="int-tags"><span class="tag">Charts</span><span class="tag">Candlestick</span><span class="tag">WebGL</span></div>
+  </div>
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">ALT</div>
+      <div><div class="int-name">Alternative.me Fear &amp; Greed</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">Real-time Fear &amp; Greed index wired into the alpha conviction score as a market-context penalty/bonus. Cached 1h. Falls back to FRED VIX on outage.</div>
+    <div class="int-tags"><span class="tag">F&amp;G Index</span><span class="tag">Alpha Score</span></div>
+  </div>
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">FRED</div>
+      <div><div class="int-name">FRED (St. Louis Fed)</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">VIX and macro economic data series. Used as fallback for Fear &amp; Greed and for macro context in the trading pipeline's conviction scoring.</div>
+    <div class="int-tags"><span class="tag">Macro</span><span class="tag">VIX</span><span class="tag">REST</span></div>
+  </div>
+</div>
+
+<!-- COMMUNICATION -->
+<div class="category-header">Communication + Productivity</div>
+<div class="int-grid">
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">TG</div>
+      <div><div class="int-name">Telegram Bot</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">Full command interface: /scan, /idea, /leads, /positions, /confirm, /ops. Rate-limited 10/min. User-ID whitelisted. The primary mobile interface for the entire OS.</div>
+    <div class="int-tags"><span class="tag green">Commands</span><span class="tag">Alerts</span><span class="tag">Whitelisted</span></div>
+  </div>
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">GM</div>
+      <div><div class="int-name">Gmail (MCP)</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">Read threads, classify urgency, push outreach drafts, search for replies. Runs through Claude MCP session. Cached to logs/gmail_cache.json for dashboard display.</div>
+    <div class="int-tags"><span class="tag green">Draft Push</span><span class="tag">Thread Search</span><span class="tag">MCP</span></div>
+  </div>
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">CAL</div>
+      <div><div class="int-name">Google Calendar (MCP)</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">List events across multiple calendars (personal + Canvas). Synced to the Productivity domain dashboard. Events surface deadlines, school schedule, and key dates.</div>
+    <div class="int-tags"><span class="tag green">Event Sync</span><span class="tag">MCP</span><span class="tag">Multi-cal</span></div>
+  </div>
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">OBS</div>
+      <div><div class="int-name">Obsidian Vault</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">Every trade verdict, lead score, and reflection proposal auto-appended to the vault. Daily notes + per-domain pages. The long-term memory layer for the OS.</div>
+    <div class="int-tags"><span class="tag">Journal</span><span class="tag">Auto-append</span><span class="tag">Markdown</span></div>
+  </div>
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">MK</div>
+      <div><div class="int-name">Make.com</div><div class="int-status status-ready">READY</div></div>
+    </div>
+    <div class="int-body">Webhook receiver scaffolded. Cross-service automations — connect any of the 1,000+ Make apps to SPIRIT pipelines. CRM sync, notification routing, data transformation.</div>
+    <div class="int-tags"><span class="tag amber">Webhooks</span><span class="tag">Scaffold</span><span class="tag">1000+ apps</span></div>
+  </div>
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">NT</div>
+      <div><div class="int-name">Notion (MCP)</div><div class="int-status status-ready">READY</div></div>
+    </div>
+    <div class="int-body">Create pages, update databases, search across workspaces. Available via MCP in any Claude session. Wire into the business pipeline for CRM-style lead tracking.</div>
+    <div class="int-tags"><span class="tag amber">MCP</span><span class="tag">Database</span><span class="tag">Pages</span></div>
+  </div>
+</div>
+
+<!-- AI MODELS -->
+<div class="category-header">AI Models + Intelligence</div>
+<div class="int-grid">
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">CL</div>
+      <div><div class="int-name">Claude (Anthropic)</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">Heavy reasoning tasks: catalyst classification, trading verdicts, reflection proposals, outreach drafts. Sonnet/Opus model chain. Falls back to Codex on API outage.</div>
+    <div class="int-tags"><span class="tag green">Reasoning</span><span class="tag">Code Gen</span><span class="tag">Sonnet/Opus</span></div>
+  </div>
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">OL</div>
+      <div><div class="int-name">Ollama (Local LLM)</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">llama3.2 running locally at localhost:11434. Used for bulk classification, news sentiment scoring, and lead scoring. Zero API cost. Optionally upgradeable to hermes3.</div>
+    <div class="int-tags"><span class="tag green">Local</span><span class="tag">llama3.2</span><span class="tag">Free</span></div>
+  </div>
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">CDX</div>
+      <div><div class="int-name">OpenAI Codex</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">GPT-5.5 via Codex CLI. Primary code-generation and catalyst-judgment fallback. Runs in read-only ephemeral sandboxes. Stricter catalyst filters than Ollama.</div>
+    <div class="int-tags"><span class="tag green">GPT-5.5</span><span class="tag">Code</span><span class="tag">Sandbox</span></div>
+  </div>
+</div>
+
+<!-- LEAD INTELLIGENCE -->
+<div class="category-header">Lead Intelligence + Scraping</div>
+<div class="int-grid">
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">RD</div>
+      <div><div class="int-name">Reddit (RSS)</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">Public RSS feeds across r/forhire, r/entrepreneur, r/smallbusiness, r/startups. Keyword scoring, For-Hire exclusion filter, 0-30 lead score. No auth needed.</div>
+    <div class="int-tags"><span class="tag green">No Auth</span><span class="tag">RSS</span><span class="tag">Lead Score</span></div>
+  </div>
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">HN</div>
+      <div><div class="int-name">Hacker News (Algolia API)</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">Free Algolia search API for HN posts and comments. Targets Freelancer/Hiring threads. Filters job-seekers, scores buyer intent. High-quality technical founder leads.</div>
+    <div class="int-tags"><span class="tag green">Free API</span><span class="tag">Founders</span><span class="tag">No Auth</span></div>
+  </div>
+  <div class="int-card">
+    <div class="int-header">
+      <div class="int-icon">WWR</div>
+      <div><div class="int-name">WeWorkRemotely</div><div class="int-status status-live">LIVE</div></div>
+    </div>
+    <div class="int-body">Remote job board RSS for AI/automation postings. Companies listing AI engineer roles are warm prospects for consulting. 48 leads scored in first run.</div>
+    <div class="int-tags"><span class="tag green">RSS</span><span class="tag">Warm Leads</span><span class="tag">No Auth</span></div>
+  </div>
+</div>
+
+<div class="cta-block">
+  <h2>Need a specific integration?</h2>
+  <p>If it has an API, we can wire it in. Salesforce, HubSpot, Stripe, Slack, Linear, Airtable — name it.</p>
+  <a href="mailto:rishithang5@gmail.com" class="btn-primary">Request an Integration &rarr;</a>
+</div>
+
+<footer class="sitefooter">
+  <span>SPIRIT LABS &copy; 2026</span>
+  <span>Built by <a href="https://rishithangada.github.io" target="_blank">Rishi Thangada</a></span>
+  <span><a href="mailto:rishithang5@gmail.com">rishithang5@gmail.com</a></span>
+</footer>
+</body>
+</html>
