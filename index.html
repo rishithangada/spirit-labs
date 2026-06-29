@@ -2,208 +2,710 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>SPIRIT Security — AI-Powered Cybersecurity Auditing</title>
+<title>D2D Spirit — Direct to Defend | AI Security Auditing</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="AI-powered web application security audits, penetration testing, and continuous vulnerability monitoring. Built by SPIRIT Security.">
+<meta name="description" content="AI-powered security audits for startups and SaaS. Reports in 48 hours. Starting at $499. OWASP Top 10, SOC 2 gap analysis, continuous monitoring.">
 <link rel="stylesheet" href="shared.css">
 <style>
+
+/* ── Nav override for shield logo ── */
+.nav-logo-wrap {
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-shield {
+  color: var(--accent); flex-shrink: 0;
+}
+.nav-logo-text {
+  font-family: var(--mono); font-size: 14px; font-weight: 700;
+  letter-spacing: 2px; color: var(--text); line-height: 1.2;
+}
+.nav-logo-sub {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 3px;
+  color: var(--muted); text-transform: uppercase;
+}
+
 /* ── Hero ── */
 .hero {
-  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-  padding: 120px 48px 80px; position: relative; overflow: hidden;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 48px;
+  padding: 130px 60px 80px;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
 }
-.hero::before {
-  content: ''; position: absolute; top: -200px; right: -200px;
-  width: 600px; height: 600px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(220,38,38,0.08) 0%, transparent 70%);
-  pointer-events: none;
+.hero::after {
+  content: '';
+  position: fixed; top: 0; right: 0; bottom: 0;
+  width: 50%;
+  background: radial-gradient(ellipse at top right, rgba(220,38,38,0.04) 0%, transparent 60%);
+  pointer-events: none; z-index: 0;
 }
-.hero-eyebrow {
-  font-family: var(--mono); font-size: 11px; letter-spacing: 4px;
-  color: var(--accent); text-transform: uppercase; margin-bottom: 24px;
-  display: flex; align-items: center; gap: 8px;
+
+/* ── Left side ── */
+.hero-left { position: relative; z-index: 1; }
+
+.audit-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(220,38,38,0.3);
+  background: rgba(220,38,38,0.06);
+  padding: 6px 14px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 3px;
+  color: var(--accent); text-transform: uppercase;
+  margin-bottom: 28px;
 }
+
 .hero h1 {
-  font-size: clamp(36px, 6vw, 72px); font-weight: 800; line-height: 1.05;
-  max-width: 900px; margin-bottom: 24px; letter-spacing: -1px;
+  font-size: clamp(36px, 4.5vw, 64px);
+  font-weight: 800; line-height: 1.08;
+  margin-bottom: 20px; letter-spacing: -1.5px;
 }
-.hero h1 em { font-style: normal; color: var(--accent); }
+.hero h1 .red { color: var(--accent); }
+
 .hero-sub {
-  font-size: 18px; color: var(--muted); max-width: 560px; line-height: 1.7; margin-bottom: 48px;
+  font-size: 16px; color: var(--muted);
+  max-width: 480px; line-height: 1.75; margin-bottom: 40px;
 }
-.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 52px; }
 
 .hero-stats {
-  display: grid; grid-template-columns: repeat(3, auto); gap: 48px;
-  margin-top: 80px; padding-top: 48px; border-top: 1px solid var(--border2);
-  width: fit-content;
+  display: flex; gap: 36px;
+  padding-top: 28px; border-top: 1px solid var(--border2);
 }
-.stat-num { font-family: var(--mono); font-size: 32px; font-weight: 700; color: var(--text); }
-.stat-num em { color: var(--accent); font-style: normal; }
-.stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.stat-num {
+  font-family: var(--mono); font-size: 24px; font-weight: 700; color: var(--text);
+}
+.stat-num .red { color: var(--accent); font-style: normal; }
+.stat-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
-/* ── What we build ── */
-.services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border2); margin-top: 48px; }
-.service-card { background: var(--surface); padding: 40px 32px; }
-.service-icon { width: 40px; height: 40px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-family: var(--mono); font-size: 14px; color: var(--accent); }
-.service-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
-.service-body  { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
-.service-tags  { display: flex; flex-wrap: wrap; gap: 6px; }
+/* ── Right side: score card ── */
+.hero-right {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; gap: 16px;
+}
+
+.score-card {
+  background: #0d0d0d;
+  border: 1px solid rgba(220,38,38,0.18);
+  padding: 32px;
+  box-shadow: 0 0 60px rgba(220,38,38,0.06), 0 24px 60px rgba(0,0,0,0.5);
+}
+.score-card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px;
+}
+.score-card-title {
+  font-size: 14px; font-weight: 700; letter-spacing: 0.5px;
+}
+.score-warning-icon {
+  color: var(--amber); font-size: 16px;
+}
+
+.score-body {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 24px; align-items: center;
+}
+
+/* SVG circular gauge */
+.score-gauge-wrap { position: relative; width: 120px; height: 120px; flex-shrink: 0; }
+.score-gauge-wrap svg { transform: rotate(-90deg); }
+.gauge-bg { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 10; }
+.gauge-fill { fill: none; stroke: var(--accent); stroke-width: 10; stroke-linecap: round;
+  stroke-dasharray: 339 339;
+  stroke-dashoffset: calc(339 - (339 * var(--score, 87) / 100));
+  transition: stroke-dashoffset 1.2s ease;
+}
+.score-number {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.score-number .big {
+  font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--text); line-height: 1;
+  display: block;
+}
+.score-number .denom {
+  font-family: var(--mono); font-size: 11px; color: var(--muted);
+}
+
+.score-breakdown { display: flex; flex-direction: column; gap: 0; }
+.severity-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px 0; border-bottom: 1px solid var(--border2);
+}
+.severity-row:last-child { border-bottom: none; }
+.severity-label { font-size: 13px; color: var(--muted); }
+.severity-badge {
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  padding: 2px 10px; min-width: 28px; text-align: center;
+}
+.sev-critical { background: rgba(220,38,38,0.15); color: var(--accent); border: 1px solid rgba(220,38,38,0.3); }
+.sev-high     { background: rgba(251,146,60,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.3); }
+.sev-medium   { background: rgba(251,191,36,0.1);  color: #fbbf24; border: 1px solid rgba(251,191,36,0.25); }
+.sev-low      { background: rgba(107,114,128,0.1); color: var(--muted); border: 1px solid var(--border2); }
+
+.score-footer {
+  margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border2);
+  font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1px;
+  display: flex; gap: 4px; align-items: center;
+}
+.score-footer .dot-live {
+  display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--pos); box-shadow: 0 0 6px var(--pos);
+  animation: blink 1.8s ease-in-out infinite;
+  margin-right: 4px;
+}
+
+/* ── Terminal card ── */
+.terminal-card {
+  background: #060606;
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+.terminal-header {
+  background: #111;
+  padding: 10px 16px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.t-dot { width: 10px; height: 10px; border-radius: 50%; }
+.t-dot.r { background: #ff5f57; }
+.t-dot.y { background: #febc2e; }
+.t-dot.g { background: #28c840; }
+.terminal-filename {
+  font-family: var(--mono); font-size: 10px; color: var(--muted);
+  margin-left: auto; margin-right: auto; letter-spacing: 1px;
+}
+.terminal-body {
+  padding: 16px 20px;
+  font-family: var(--mono); font-size: 11px; line-height: 1.85;
+  max-height: 210px; overflow: hidden;
+}
+.t-ts { color: #374151; }
+.t-cmd-line { color: #e5e7eb; }
+.t-ok { color: #4ade80; }
+.t-warn { color: #fbbf24; }
+.t-crit { color: var(--accent); font-weight: 700; }
+.t-gray { color: #4b5563; }
+.t-cursor {
+  display: inline-block; width: 7px; height: 12px;
+  background: var(--accent); vertical-align: middle;
+  animation: blink 0.9s step-end infinite;
+}
+
+/* ── Compare strip ── */
+.compare-strip {
+  padding: 80px 60px;
+  max-width: 960px; margin: 0 auto;
+}
+.compare-grid {
+  display: grid; grid-template-columns: 1fr 60px 1fr;
+  gap: 24px; align-items: start; margin-top: 40px;
+}
+.compare-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 3px;
+  color: var(--muted); text-transform: uppercase; margin-bottom: 16px;
+}
+.compare-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--border2);
+  font-size: 13px;
+}
+.compare-row:last-child { border-bottom: none; }
+.compare-bad { color: var(--muted); text-decoration: line-through; opacity: 0.6; }
+.compare-good { color: var(--text); font-weight: 600; }
+.c-x { color: #374151; }
+.c-check { color: var(--accent); }
+.compare-vs {
+  font-family: var(--mono); font-size: 11px; color: var(--border);
+  text-align: center; padding-top: 60px;
+}
+
+/* ── Services grid ── */
+.services-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; background: var(--border2);
+  margin-top: 48px;
+}
+.service-card { background: var(--surface); padding: 40px 32px; transition: background .2s; }
+.service-card:hover { background: var(--surface2); }
+.service-icon {
+  width: 40px; height: 40px; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px; font-family: var(--mono); font-size: 14px; color: var(--accent);
+}
+.service-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.service-body { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+.service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.service-price {
+  font-family: var(--mono); font-size: 13px; color: var(--accent);
+  margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border2);
+}
 
 /* ── Proof strip ── */
 .proof-strip {
   border-top: 1px solid var(--border2); border-bottom: 1px solid var(--border2);
-  padding: 48px; display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
-  background: var(--border2);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border2);
 }
-.proof-item { background: var(--bg); padding: 32px 40px; }
-.proof-val { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
-.proof-lbl { font-size: 12px; color: var(--muted); letter-spacing: 1px; }
+.proof-item { background: var(--bg); padding: 40px; }
+.proof-val {
+  font-family: var(--mono); font-size: 28px; font-weight: 700;
+  color: var(--accent); margin-bottom: 8px;
+}
+.proof-lbl { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
-/* ── CTA ── */
-.cta-block {
-  text-align: center; padding: 100px 48px;
+/* ── Audit intake form ── */
+.audit-form-section {
+  padding: 100px 60px;
   border-top: 1px solid var(--border2);
+  background: var(--surface);
 }
-.cta-block h2 { font-size: 36px; font-weight: 800; margin-bottom: 16px; }
-.cta-block p  { color: var(--muted); margin-bottom: 40px; font-size: 16px; }
+.audit-form-inner { max-width: 760px; margin: 0 auto; }
+.form-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;
+}
+.form-full { grid-column: 1 / -1; }
+.field-label {
+  display: block;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 2px;
+  color: var(--muted); text-transform: uppercase; margin-bottom: 8px;
+}
+.field-input {
+  width: 100%;
+  background: #0a0a0a; border: 1px solid var(--border2);
+  color: var(--text); font-family: var(--mono); font-size: 13px;
+  padding: 12px 16px; outline: none; transition: border-color .2s;
+}
+.field-input:focus { border-color: var(--accent); }
+.field-input::placeholder { color: var(--dim); }
+.auth-checkboxes { margin-top: 20px; margin-bottom: 28px; }
+.auth-check-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 16px; border: 1px solid var(--border2);
+  margin-bottom: 8px; cursor: pointer; transition: border-color .2s;
+}
+.auth-check-item:hover { border-color: rgba(220,38,38,0.3); }
+.auth-check-item input[type="checkbox"] {
+  width: 16px; height: 16px; margin-top: 2px;
+  accent-color: var(--accent); flex-shrink: 0; cursor: pointer;
+}
+.auth-check-label { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.auth-check-label strong { color: var(--text); font-weight: 600; }
+.form-submit-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 16px 40px; background: var(--accent); color: #fff;
+  border: none; cursor: pointer; transition: all .2s; width: 100%;
+  opacity: 0.38; pointer-events: none;
+}
+.form-submit-btn.enabled { opacity: 1; pointer-events: auto; }
+.form-submit-btn.enabled:hover { background: var(--accent2); }
+.form-note {
+  margin-top: 16px; font-family: var(--mono); font-size: 10px;
+  color: var(--muted); line-height: 1.7; letter-spacing: 0.3px;
+}
+.form-note a { color: var(--accent); }
 
+/* ── CTA block ── */
+.cta-block { text-align: center; padding: 100px 60px; border-top: 1px solid var(--border2); }
+.cta-block h2 { font-size: 36px; font-weight: 800; margin-bottom: 16px; }
+.cta-block h2 .red { color: var(--accent); }
+.cta-block p {
+  color: var(--muted); margin-bottom: 40px; font-size: 16px;
+  max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.7;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; padding: 120px 32px 60px; }
+  .hero-right { display: none; }
+}
 @media (max-width: 900px) {
   .services-grid { grid-template-columns: 1fr; }
-  .proof-strip   { grid-template-columns: repeat(2,1fr); }
-  .hero-stats    { grid-template-columns: repeat(2, auto); gap: 32px; }
+  .proof-strip { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats { flex-wrap: wrap; gap: 24px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .audit-form-section { padding: 80px 24px; }
+  .compare-grid { grid-template-columns: 1fr; }
+  .compare-vs { display: none; }
+  .compare-strip { padding: 60px 24px; }
 }
 </style>
 </head>
 <body>
 
 <nav class="topnav">
-  <div class="nav-logo">SPIRIT<span>/SEC</span></div>
+  <div class="nav-logo-wrap">
+    <svg class="nav-shield" width="20" height="22" viewBox="0 0 20 22" fill="none">
+      <path d="M10 1L2 4.5V10c0 5 3.5 9.2 8 10.5C14.5 19.2 18 15 18 10V4.5L10 1Z" fill="rgba(220,38,38,0.15)" stroke="#dc2626" stroke-width="1.5"/>
+      <path d="M7 11l2 2 4-4" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div>
+      <div class="nav-logo-text">D2D SPIRIT</div>
+      <div class="nav-logo-sub">Direct to Defend</div>
+    </div>
+  </div>
   <div class="nav-links">
     <a href="index.html" class="active">Home</a>
-    <a href="security.html">Audits</a>
+    <a href="security.html">Services</a>
     <a href="integrations.html">How It Works</a>
-    <a href="demo.html">Free Scan Demo</a>
+    <a href="demo.html">Demo Scan</a>
   </div>
-  <a href="mailto:rishithang5@gmail.com" class="nav-cta">Request Audit</a>
+  <a href="#audit-form" class="nav-cta">Start Audit &rarr;</a>
 </nav>
 
+<div style="border-bottom:1px solid var(--border2);">
 <section class="hero">
-  <div class="hero-eyebrow">SPIRIT SECURITY</div>
-  <h1>We audit your app <em>before</em><br>attackers do.</h1>
-  <p class="hero-sub">
-    AI-powered security audits for SaaS companies, startups, and enterprises. Web app scanning, SOC 2 gap analysis, and monthly monitoring — delivered as branded reports.
-  </p>
-  <div class="hero-actions">
-    <a href="demo.html" class="btn-primary">See Sample Report &rarr;</a>
-    <a href="mailto:rishithang5@gmail.com" class="btn-ghost">Request Free Scan</a>
+  <!-- Left -->
+  <div class="hero-left">
+    <div class="audit-badge">
+      <svg width="12" height="12" viewBox="0 0 20 22" fill="none">
+        <path d="M10 1L2 4.5V10c0 5 3.5 9.2 8 10.5C14.5 19.2 18 15 18 10V4.5L10 1Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M7 11l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Enterprise-Grade Security Audits
+    </div>
+    <h1>
+      Secure Your<br>
+      <span class="red">Digital Assets</span><br>
+      in 48 Hours.
+    </h1>
+    <p class="hero-sub">
+      Comprehensive cybersecurity audits that identify vulnerabilities before attackers do.
+      OWASP-certified testing, real-time monitoring, and actionable insights.
+      <strong style="color:var(--text)">Starting at $499 — not $50,000.</strong>
+    </p>
+    <div class="hero-actions">
+      <a href="#audit-form" class="btn-primary">Start Audit Now &rarr;</a>
+      <a href="demo.html" class="btn-ghost">See Sample Report</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">$499<span class="red"></span></div>
+        <div class="stat-label">Starting price</div>
+      </div>
+      <div>
+        <div class="stat-num">48<span class="red">hr</span></div>
+        <div class="stat-label">Report delivery</div>
+      </div>
+      <div>
+        <div class="stat-num">OWASP</div>
+        <div class="stat-label">Top 10 covered</div>
+      </div>
+    </div>
   </div>
-  <div class="hero-stats">
-    <div>
-      <div class="stat-num">4<em></em></div>
-      <div class="stat-label">Audit types available</div>
+
+  <!-- Right: Score card + terminal -->
+  <div class="hero-right">
+
+    <!-- Security score card -->
+    <div class="score-card">
+      <div class="score-card-header">
+        <div class="score-card-title">Security Score</div>
+        <div class="score-warning-icon">⚠</div>
+      </div>
+      <div class="score-body">
+        <div class="score-gauge-wrap">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="54"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="54" style="--score:87"/>
+          </svg>
+          <div class="score-number">
+            <span class="big">87</span>
+            <span class="denom">/ 100</span>
+          </div>
+        </div>
+        <div class="score-breakdown">
+          <div class="severity-row">
+            <span class="severity-label">Critical Issues</span>
+            <span class="severity-badge sev-critical">2</span>
+          </div>
+          <div class="severity-row">
+            <span class="severity-label">High Priority</span>
+            <span class="severity-badge sev-high">6</span>
+          </div>
+          <div class="severity-row">
+            <span class="severity-label">Medium Priority</span>
+            <span class="severity-badge sev-medium">8</span>
+          </div>
+          <div class="severity-row">
+            <span class="severity-label">Low Priority</span>
+            <span class="severity-badge sev-low">12</span>
+          </div>
+        </div>
+      </div>
+      <div class="score-footer">
+        <span class="dot-live"></span>
+        Last scan: 29/06/2026 &nbsp;•&nbsp; Next scan: Scheduled
+      </div>
     </div>
-    <div>
-      <div class="stat-num">$200<em>K+</em></div>
-      <div class="stat-label">Enterprise audit cost we replace</div>
+
+    <!-- Terminal -->
+    <div class="terminal-card">
+      <div class="terminal-header">
+        <div class="t-dot r"></div>
+        <div class="t-dot y"></div>
+        <div class="t-dot g"></div>
+        <div class="terminal-filename">security-audit.sh</div>
+      </div>
+      <div class="terminal-body" id="term-out"></div>
     </div>
-    <div>
-      <div class="stat-num">48<em>hr</em></div>
-      <div class="stat-label">Avg report turnaround</div>
-    </div>
+
   </div>
 </section>
+</div>
+
+<!-- Compare -->
+<div class="compare-strip">
+  <p class="section-label">Why D2D Spirit</p>
+  <h2 class="section-title" style="font-size:28px;margin-bottom:4px;">Not your average security firm.</h2>
+  <div class="compare-grid">
+    <div>
+      <div class="compare-label">Traditional Auditors</div>
+      <div class="compare-row"><span class="c-x">✗</span> <span class="compare-bad">$20,000–$100,000 minimum</span></div>
+      <div class="compare-row"><span class="c-x">✗</span> <span class="compare-bad">4–6 week timeline</span></div>
+      <div class="compare-row"><span class="c-x">✗</span> <span class="compare-bad">Long-term retainer required</span></div>
+      <div class="compare-row"><span class="c-x">✗</span> <span class="compare-bad">Boilerplate PDF reports</span></div>
+      <div class="compare-row"><span class="c-x">✗</span> <span class="compare-bad">No monitoring between audits</span></div>
+    </div>
+    <div class="compare-vs">vs</div>
+    <div>
+      <div class="compare-label">D2D Spirit</div>
+      <div class="compare-row"><span class="c-check">→</span> <span class="compare-good">From $499 per audit</span></div>
+      <div class="compare-row"><span class="c-check">→</span> <span class="compare-good">48-hour report delivery</span></div>
+      <div class="compare-row"><span class="c-check">→</span> <span class="compare-good">Pay per audit — no retainer</span></div>
+      <div class="compare-row"><span class="c-check">→</span> <span class="compare-good">Severity-rated, actionable findings</span></div>
+      <div class="compare-row"><span class="c-check">→</span> <span class="compare-good">Optional continuous monitoring</span></div>
+    </div>
+  </div>
+</div>
 
 <hr class="divider">
 
-<div style="padding: 100px 48px 0; max-width:1200px; margin:0 auto;">
+<!-- Services -->
+<div style="padding:100px 60px 0;max-width:1200px;margin:0 auto;">
   <p class="section-label">What we audit</p>
-  <h2 class="section-title">Four audit types.<br>One structured report.</h2>
-  <p class="section-sub">Every engagement delivers a branded PDF with severity-rated findings and a remediation roadmap — not a raw scanner dump.</p>
+  <h2 class="section-title">Four services.<br>One structured report.</h2>
+  <p class="section-sub">Every engagement delivers a branded report with CVSS severity ratings and a remediation roadmap — not a raw scanner dump.</p>
 </div>
-
-<div style="max-width:1200px; margin:0 auto; padding: 40px 48px 100px;">
+<div style="max-width:1200px;margin:0 auto;padding:40px 60px 100px;">
   <div class="services-grid">
     <div class="service-card">
       <div class="service-icon">01</div>
-      <div class="service-title">Web App Audit</div>
-      <div class="service-body">Port scan, HTTP header analysis, SSL check, OWASP Top 10 checks, CVE lookup. Delivered as a PDF report in 48 hours.</div>
+      <div class="service-title">Web App Security Audit</div>
+      <div class="service-body">HTTP header analysis, SSL/TLS inspection, OWASP Top 10 checks, server disclosure, cookie security, and open port scan. Delivered as a structured report in 48 hours.</div>
       <div class="service-tags">
-        <span class="tag red">OWASP</span>
+        <span class="tag red">OWASP Top 10</span>
         <span class="tag">Port Scan</span>
         <span class="tag">SSL Check</span>
-        <span class="tag amber">PDF Report</span>
+        <span class="tag amber">48hr Report</span>
       </div>
+      <div class="service-price">From $499 one-time</div>
     </div>
     <div class="service-card">
       <div class="service-icon">02</div>
-      <div class="service-title">Monthly Monitoring</div>
-      <div class="service-body">Continuous vulnerability scanning, weekly change detection, monthly executive report. Subscription model.</div>
+      <div class="service-title">Continuous Monitoring</div>
+      <div class="service-body">Weekly vulnerability scans, new CVE alerts, configuration drift detection, and a monthly executive report. Catch new exposures as they appear.</div>
       <div class="service-tags">
-        <span class="tag red">Continuous</span>
-        <span class="tag">Weekly Scans</span>
-        <span class="tag green">Subscription</span>
-        <span class="tag">Exec Report</span>
+        <span class="tag red">Weekly Scans</span>
+        <span class="tag">CVE Alerts</span>
+        <span class="tag green">Monthly Report</span>
+        <span class="tag">Drift Detection</span>
       </div>
+      <div class="service-price">$2,499/mo subscription</div>
     </div>
     <div class="service-card">
       <div class="service-icon">03</div>
       <div class="service-title">SOC 2 Gap Analysis</div>
-      <div class="service-body">Map your controls against SOC 2 Type II criteria, identify gaps, generate remediation plan. Required before your audit firm engagement.</div>
+      <div class="service-body">Map your controls against SOC 2 Type II criteria, identify compliance gaps, and get a remediation plan. Required before your audit firm engagement.</div>
       <div class="service-tags">
         <span class="tag red">SOC 2</span>
         <span class="tag">Controls Map</span>
         <span class="tag amber">Gap Report</span>
-        <span class="tag">Remediation</span>
+        <span class="tag">Remediation Plan</span>
       </div>
+      <div class="service-price">From $2,499 one-time</div>
     </div>
     <div class="service-card">
       <div class="service-icon">04</div>
       <div class="service-title">Penetration Testing</div>
-      <div class="service-body">Manual + automated pentest of your web app, API, and admin surface. Full written report with severity ratings and remediation steps.</div>
+      <div class="service-body">Manual and automated pentest of your web app, API surface, and admin panel. Full written report with CVSS severity ratings and step-by-step remediation.</div>
       <div class="service-tags">
-        <span class="tag red">Pentest</span>
+        <span class="tag red">Manual Pentest</span>
         <span class="tag">API Review</span>
-        <span class="tag amber">Severity Rated</span>
-        <span class="tag">Manual</span>
+        <span class="tag amber">CVSS Ratings</span>
+        <span class="tag">Remediation</span>
       </div>
+      <div class="service-price">From $9,999 — custom scope</div>
     </div>
   </div>
 </div>
 
+<!-- Proof strip -->
 <div class="proof-strip">
   <div class="proof-item">
     <div class="proof-val">OWASP</div>
-    <div class="proof-lbl">Top 10 — fully covered</div>
+    <div class="proof-lbl">Top 10 —<br>fully covered</div>
   </div>
   <div class="proof-item">
     <div class="proof-val">48hr</div>
-    <div class="proof-lbl">Report turnaround</div>
+    <div class="proof-lbl">Avg report<br>turnaround</div>
   </div>
   <div class="proof-item">
     <div class="proof-val">SOC 2</div>
-    <div class="proof-lbl">Gap analysis ready</div>
+    <div class="proof-lbl">Gap analysis<br>ready</div>
   </div>
   <div class="proof-item">
     <div class="proof-val">$0</div>
-    <div class="proof-lbl">No retainer lock-in</div>
+    <div class="proof-lbl">Retainer<br>required</div>
   </div>
 </div>
 
+<!-- Audit intake form (authorization gated) -->
+<div class="audit-form-section" id="audit-form">
+  <div class="audit-form-inner">
+    <p class="section-label">Request your audit</p>
+    <h2 class="section-title">Start with a free passive scan.</h2>
+    <p class="section-sub">
+      Submit your domain and we'll run a passive check (HTTP headers, SSL cert, DNS) within 2 hours at no cost.
+      Full active audit begins after you confirm authorization and payment.
+    </p>
+    <form onsubmit="return false;">
+      <div class="form-grid">
+        <div>
+          <label class="field-label" for="f-name">Your Name</label>
+          <input class="field-input" type="text" id="f-name" placeholder="Jane Smith" required>
+        </div>
+        <div>
+          <label class="field-label" for="f-email">Email Address</label>
+          <input class="field-input" type="email" id="f-email" placeholder="jane@yourcompany.com" required>
+        </div>
+        <div class="form-full">
+          <label class="field-label" for="f-domain">Target Domain</label>
+          <input class="field-input" type="text" id="f-domain" placeholder="yourapp.com" required>
+        </div>
+      </div>
+      <div class="auth-checkboxes">
+        <label class="auth-check-item">
+          <input type="checkbox" id="check-own" onchange="updateSubmit()">
+          <span class="auth-check-label">
+            <strong>I confirm I own or am authorized to test this domain.</strong>
+            I have written permission from the domain owner to conduct security testing.
+          </span>
+        </label>
+        <label class="auth-check-item">
+          <input type="checkbox" id="check-roe" onchange="updateSubmit()">
+          <span class="auth-check-label">
+            <strong>I authorize D2D Spirit to perform security testing on this domain.</strong>
+            This constitutes a Rules of Engagement agreement for the scope described above.
+          </span>
+        </label>
+      </div>
+      <button id="submit-btn" class="form-submit-btn" onclick="handleSubmit(event)">
+        Continue to Secure Payment — $499 &rarr;
+      </button>
+      <p class="form-note">
+        Passive scan (headers, SSL, DNS) is free — results within 2 hours.
+        Active OWASP scan + port scan requires authorization above + payment.
+        We never test domains without explicit written consent.
+        Questions? <a href="mailto:rishithang5@gmail.com">rishithang5@gmail.com</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+<!-- Final CTA -->
 <div class="cta-block">
-  <h2>Request your free preliminary scan.</h2>
-  <p>We audit your domain in 48 hours and deliver a structured report. No retainer required.</p>
+  <h2>Ready to <span class="red">defend directly</span>?</h2>
+  <p>Most startups have 4–8 critical vulnerabilities. We find yours before attackers do — in 48 hours, for a fraction of enterprise audit costs.</p>
   <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-    <a href="mailto:rishithang5@gmail.com" class="btn-primary">Request Free Scan &rarr;</a>
-    <a href="demo.html" class="btn-ghost">See Sample Report</a>
+    <a href="#audit-form" class="btn-primary">Request Your Audit &rarr;</a>
+    <a href="demo.html" class="btn-ghost">See Demo Report</a>
   </div>
 </div>
 
 <footer class="sitefooter">
-  <span>SPIRIT SECURITY &copy; 2026</span>
+  <span>D2D SPIRIT &copy; 2026 — DIRECT TO DEFEND</span>
   <span>Built by <a href="https://rishithangada.github.io" target="_blank">Rishi Thangada</a> &mdash; CS @ UT Austin</span>
   <span><a href="mailto:rishithang5@gmail.com">rishithang5@gmail.com</a></span>
 </footer>
+
+<script>
+// Terminal animation — timestamped format like 21st.dev design
+const termLines = [
+  { text: '> Initializing security audit...', cls: 't-cmd-line' },
+  { text: '> Scanning ports [22, 80, 443, 8080]...', cls: 't-cmd-line' },
+  { text: '✓ Port 443 (HTTPS) — OPEN', cls: 't-ok' },
+  { text: '✓ Port 80 (HTTP) — OPEN', cls: 't-ok' },
+  { text: '> Checking SSL/TLS certificates...', cls: 't-cmd-line' },
+  { text: '✓ SSL Certificate valid (expires in 89 days)', cls: 't-ok' },
+  { text: '△ TLS 1.0 detected — upgrade recommended', cls: 't-warn' },
+  { text: '> Running OWASP Top 10 checks...', cls: 't-cmd-line' },
+  { text: '✗ X-Frame-Options header MISSING', cls: 't-crit' },
+  { text: '✗ Content-Security-Policy MISSING', cls: 't-crit' },
+  { text: '△ Server: Apache/2.4.41 disclosed', cls: 't-warn' },
+  { text: '> Scan complete. Generating report...', cls: 't-gray' },
+];
+
+const termOut = document.getElementById('term-out');
+let lineIdx = 0;
+const startTime = new Date();
+
+function pad(n) { return String(n).padStart(2, '0'); }
+function timestamp() {
+  const d = new Date();
+  return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+}
+
+function addTermLine() {
+  if (lineIdx >= termLines.length) {
+    const cur = document.createElement('span');
+    cur.className = 't-cursor';
+    termOut.appendChild(cur);
+    return;
+  }
+  const { text, cls } = termLines[lineIdx++];
+  const row = document.createElement('div');
+  const ts = document.createElement('span');
+  ts.className = 't-ts';
+  ts.textContent = timestamp() + ' ';
+  const msg = document.createElement('span');
+  msg.className = cls;
+  msg.textContent = text;
+  row.appendChild(ts);
+  row.appendChild(msg);
+  termOut.appendChild(row);
+  const delay = cls === 't-cmd-line' ? 600 : 300;
+  setTimeout(addTermLine, delay);
+}
+setTimeout(addTermLine, 600);
+
+// Form auth gate
+function updateSubmit() {
+  const btn = document.getElementById('submit-btn');
+  const c1 = document.getElementById('check-own').checked;
+  const c2 = document.getElementById('check-roe').checked;
+  btn.classList.toggle('enabled', c1 && c2);
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  if (!btn.classList.contains('enabled')) return;
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const domain = document.getElementById('f-domain').value.trim();
+  if (!name || !email || !domain) { alert('Please fill in all fields.'); return; }
+  // ponytail: replace with real Stripe Payment Link — Dashboard → Products → Create Payment Link
+  const stripeBase = 'https://buy.stripe.com/REPLACE_WITH_YOUR_PAYMENT_LINK';
+  window.open(stripeBase + '?prefilled_email=' + encodeURIComponent(email), '_blank');
+}
+</script>
 
 </body>
 </html>
