@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Security Audit — SPIRIT Labs</title>
+<title>Audit Packages — SPIRIT Security</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="shared.css">
 <style>
@@ -70,29 +70,29 @@
 <body>
 
 <nav class="topnav">
-  <div class="nav-logo">SPIRIT<span>/LABS</span></div>
+  <div class="nav-logo">SPIRIT<span>/SEC</span></div>
   <div class="nav-links">
     <a href="index.html">Home</a>
-    <a href="demo.html">Demo</a>
-    <a href="integrations.html">Integrations</a>
-    <a href="security.html" class="active">Security</a>
+    <a href="security.html" class="active">Audits</a>
+    <a href="integrations.html">How It Works</a>
+    <a href="demo.html">Free Scan Demo</a>
   </div>
-  <a href="mailto:rishithang5@gmail.com" class="nav-cta">Start a Project</a>
+  <a href="mailto:rishithang5@gmail.com" class="nav-cta">Request Audit</a>
 </nav>
 
 <div class="page-hero">
   <div style="max-width:1200px; margin:0 auto;">
-    <p class="section-label">Security Audit Add-On</p>
-    <h1>Ship secure.<br>Stay secure.</h1>
-    <p>Every codebase we deliver ships with a security audit built in. Available as a standalone service for existing systems — Python, JavaScript, or full-stack web apps.</p>
+    <p class="section-label">Audit Packages</p>
+    <h1>Audit Packages</h1>
+    <p>Choose a package or request a custom scope. All audits delivered as branded PDF reports.</p>
   </div>
 </div>
 
 <!-- Scanner Stack -->
 <div style="max-width:1200px; margin:0 auto; padding:60px 48px 0;">
   <p class="section-label">Scanner Stack</p>
-  <h2 class="section-title">4 tools. One report.</h2>
-  <p class="section-sub" style="margin-bottom:40px;">Every audit runs all four scanners automatically. No manual setup — your code goes in, a severity-graded PDF comes out.</p>
+  <h2 class="section-title">3 tools. One report.</h2>
+  <p class="section-sub" style="margin-bottom:40px;">Every audit runs all three scanners automatically. Submit your domain — a severity-graded PDF comes out within 48 hours.</p>
 </div>
 <div style="max-width:1200px; margin:0 auto; padding:0 48px 60px; border-bottom:1px solid var(--border2);">
   <div style="background:var(--surface); border:1px solid var(--border2);">
@@ -103,28 +103,22 @@
       <div style="font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--muted);text-align:right;">SCOPE</div>
     </div>
     <div class="scanner-row">
-      <div class="scanner-name">Bandit</div>
-      <div class="scanner-version">v1.9.4 &mdash; installed</div>
-      <div class="scanner-desc">Python-specific vulnerabilities: hardcoded passwords, SQL injection, unsafe subprocess calls, insecure pickle/yaml usage, weak crypto.</div>
-      <div class="scanner-scope">Python</div>
+      <div class="scanner-name">port-scanner</div>
+      <div class="scanner-version">v2.1 &mdash; active</div>
+      <div class="scanner-desc">TCP port sweep across 20 common service ports. Flags risky open services (FTP, Telnet, RDP, exposed databases) and maps the external attack surface.</div>
+      <div class="scanner-scope">Web App</div>
     </div>
     <div class="scanner-row">
-      <div class="scanner-name">Semgrep</div>
-      <div class="scanner-version">v1.167.0 &mdash; installed</div>
-      <div class="scanner-desc">Multi-language static analysis with OWASP rule packs. Catches XSS, SQLi, broken auth, SSRF, path traversal across Python, JS, TypeScript, Go.</div>
-      <div class="scanner-scope">Multi-lang</div>
+      <div class="scanner-name">ssl-checker</div>
+      <div class="scanner-version">v1.4 &mdash; active</div>
+      <div class="scanner-desc">Certificate validity, expiry countdown, and cipher suite review. Flags weak protocols (TLS 1.0/1.1), self-signed certs, and misconfigured chains.</div>
+      <div class="scanner-scope">TLS/SSL</div>
     </div>
     <div class="scanner-row">
-      <div class="scanner-name">Safety</div>
-      <div class="scanner-version">via pip-audit</div>
-      <div class="scanner-desc">Dependency vulnerability scan — checks every package in requirements.txt against the CVE database. Flags known-vulnerable versions with fix recommendations.</div>
-      <div class="scanner-scope">Dependencies</div>
-    </div>
-    <div class="scanner-row">
-      <div class="scanner-name">OWASP ZAP</div>
-      <div class="scanner-version">Web app scanner</div>
-      <div class="scanner-desc">Dynamic analysis for live web apps. Finds XSS, broken authentication, CSRF, security misconfigurations, sensitive data exposure, and injection flaws.</div>
-      <div class="scanner-scope">Web Apps</div>
+      <div class="scanner-name">header-inspector</div>
+      <div class="scanner-version">v3.0 &mdash; active</div>
+      <div class="scanner-desc">HTTP response header analysis: CSP, X-Frame-Options, HSTS, Referrer-Policy, Permissions-Policy. Flags missing or misconfigured security headers.</div>
+      <div class="scanner-scope">HTTP Headers</div>
     </div>
   </div>
 </div>
@@ -156,7 +150,7 @@
     <p class="section-label">Sample Output</p>
     <h2 class="section-title" style="margin-bottom:40px;">What your report looks like.</h2>
     <div class="report-preview">
-      <div class="rp-header">SPIRIT LABS — SECURITY AUDIT REPORT</div>
+      <div class="rp-header">SPIRIT SECURITY — SECURITY AUDIT REPORT</div>
       <div>Client: [Your Company] &nbsp;|&nbsp; Scan Date: 2026-06-23 &nbsp;|&nbsp; Scope: Python + Web App</div>
       <div class="rp-section">Executive Summary</div>
       <div>Total issues found: <span class="rp-high">2 HIGH</span> &nbsp; <span class="rp-med">4 MEDIUM</span> &nbsp; <span class="rp-low">6 LOW</span></div>
@@ -185,47 +179,48 @@
   <div class="pricing-grid">
     <div class="price-card">
       <div class="price-tier">Starter</div>
-      <div class="price-val">$500<span> flat</span></div>
-      <div class="price-desc">Single codebase, Python or JS. Great for small projects or MVPs before launch.</div>
+      <div class="price-val">$499<span> one-time</span></div>
+      <div class="price-desc">Web App Scan. For SaaS teams and startups that need a fast, structured security baseline before launch.</div>
       <ul class="price-features">
-        <li>Bandit + Semgrep static scan</li>
-        <li>Dependency CVE check</li>
-        <li>PDF report with severity grades</li>
-        <li>Up to 10,000 lines of code</li>
-        <li>3-day turnaround</li>
-        <li class="dim">OWASP ZAP dynamic scan</li>
-        <li class="dim">Remediation walkthrough call</li>
+        <li>Port scan (20 common service ports)</li>
+        <li>HTTP header analysis</li>
+        <li>SSL/TLS certificate check</li>
+        <li>Basic OWASP Top 10 checks</li>
+        <li>10-page branded PDF report</li>
+        <li>48-hour delivery</li>
+        <li class="dim">Monthly monitoring</li>
+        <li class="dim">SOC 2 gap analysis</li>
       </ul>
       <a href="mailto:rishithang5@gmail.com" class="btn-ghost" style="width:100%;justify-content:center;">Get Started</a>
     </div>
     <div class="price-card featured">
       <div class="price-badge">MOST POPULAR</div>
-      <div class="price-tier">Standard</div>
-      <div class="price-val">$1,200<span> flat</span></div>
-      <div class="price-desc">Full-stack audit with dynamic scanning. Ideal for production apps with real users and data.</div>
+      <div class="price-tier">Professional</div>
+      <div class="price-val">$2,499<span>/mo</span></div>
+      <div class="price-desc">Monthly Monitoring. Continuous coverage for production apps with real users, data, and regulatory exposure.</div>
       <ul class="price-features">
-        <li>Everything in Starter</li>
-        <li>OWASP ZAP dynamic scan</li>
-        <li>All 10 OWASP categories checked</li>
-        <li>Unlimited lines of code</li>
-        <li>Multi-language (Python + JS/TS)</li>
-        <li>1-hour remediation call included</li>
-        <li class="dim">CI/CD pipeline integration</li>
+        <li>Weekly automated scans</li>
+        <li>Monthly executive report</li>
+        <li>Change detection between scans</li>
+        <li>Up to 3 domains covered</li>
+        <li>OWASP Top 10 — full coverage</li>
+        <li>New CVE alerting</li>
+        <li>30-minute monthly review call</li>
       </ul>
       <a href="mailto:rishithang5@gmail.com" class="btn-primary" style="width:100%;justify-content:center;">Get Started &rarr;</a>
     </div>
     <div class="price-card">
       <div class="price-tier">Enterprise</div>
-      <div class="price-val">$2,500<span>+</span></div>
-      <div class="price-desc">Ongoing security partnership. Monthly scans, CI/CD integration, and developer training.</div>
+      <div class="price-val">$9,999<span> custom</span></div>
+      <div class="price-desc">Full Pentest + SOC 2 Gap. For companies preparing for a SOC 2 Type II audit or handling sensitive customer data.</div>
       <ul class="price-features">
-        <li>Everything in Standard</li>
-        <li>Monthly recurring scans</li>
-        <li>CI/CD pipeline integration</li>
-        <li>CodeRabbit PR-level review</li>
-        <li>Custom security rules (Semgrep)</li>
-        <li>Developer training session</li>
-        <li>Priority 24h turnaround</li>
+        <li>Manual penetration test</li>
+        <li>API and admin surface review</li>
+        <li>SOC 2 Type II gap analysis</li>
+        <li>Control mapping and remediation roadmap</li>
+        <li>60+ page written report</li>
+        <li>Severity ratings on every finding</li>
+        <li>1-hour executive walkthrough call</li>
       </ul>
       <a href="mailto:rishithang5@gmail.com" class="btn-ghost" style="width:100%;justify-content:center;">Contact Us</a>
     </div>
@@ -233,13 +228,13 @@
 </div>
 
 <div class="cta-block">
-  <h2>Want a free pre-audit checklist?</h2>
-  <p>We'll send you a 20-point security checklist you can run yourself before engaging. No strings attached.</p>
-  <a href="mailto:rishithang5@gmail.com?subject=Free Security Checklist" class="btn-primary">Send Me the Checklist &rarr;</a>
+  <h2>Not sure which package fits?</h2>
+  <p>Email us your domain and a brief description. We'll recommend the right scope and send a free preliminary scan summary.</p>
+  <a href="mailto:rishithang5@gmail.com?subject=SPIRIT Security Audit Inquiry" class="btn-primary">Request Free Scan &rarr;</a>
 </div>
 
 <footer class="sitefooter">
-  <span>SPIRIT LABS &copy; 2026</span>
+  <span>SPIRIT SECURITY &copy; 2026</span>
   <span>Built by <a href="https://rishithangada.github.io" target="_blank">Rishi Thangada</a></span>
   <span><a href="mailto:rishithang5@gmail.com">rishithang5@gmail.com</a></span>
 </footer>
