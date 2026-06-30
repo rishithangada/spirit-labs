@@ -702,7 +702,7 @@ function handleSubmit(e) {
   const domain = document.getElementById('f-domain').value.trim();
   if (!name || !email || !domain) { alert('Please fill in all fields.'); return; }
   // ponytail: replace with real Stripe Payment Link — Dashboard → Products → Create Payment Link
-  const stripeBase = 'https://buy.stripe.com/REPLACE_WITH_YOUR_PAYMENT_LINK';
+  const stripeBase = 'https://buy.stripe.com/fZu7sEd0Q9Cp36I3rh1sQ00';
   window.open(stripeBase + '?prefilled_email=' + encodeURIComponent(email), '_blank');
 }
 </script>
